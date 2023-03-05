@@ -11,10 +11,10 @@ class UserControllerTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function testLoginPage(): void
     {
-        $response = $this->get('/');
+        $this->get('/login')->assertSeeText("Login");
 
-        $response->assertStatus(200);
+        
     }
 }
