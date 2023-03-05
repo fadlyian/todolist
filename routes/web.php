@@ -23,5 +23,5 @@ Route::view('/', 'template');
 Route::controller(UserController::class,)->group(function(){
     Route::get('/login', 'login');
     Route::post('/login', 'doLogin');
-    Route::post('/login', 'logout');
+    Route::post('/logout', 'doLogout');
 });
