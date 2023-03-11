@@ -36,12 +36,36 @@ class TodolistServiceTest extends TestCase
 
     public function testSaveTodo()
     {
-        $this->todolistService->saveTodo("1", "Eko");
+        $this->todolistService->saveTodo("1", "eko");
 
         $todolist = Session::get("todolist");
-        foreach ($todolist as $value){
+        foreach($todolist as $value){
             self::assertEquals("1", $value['id']);
-            self::assertEquals("Eko", $value['todo']);
+            self::assertEquals("eko", $value['todo']);
         }
+    }
+
+    public function testGetTodolistEmpty()
+    {
+        self::assertEquals([], $this->todolistService->getTodolist());
+    }
+
+    public function testGetTodolistNotEmpty()
+    {
+        $expected = [
+            [
+                "id" => "1",
+                "todo" => "Eko"
+            ],
+            [
+                "id" => "2",
+                "todo" => "Kurniawan"
+            ]
+        ];
+
+        $this->todolistService->saveTodo("1", "Eko");
+        $this->todolistService->saveTodo("2", "Kurniawan");
+
+        self::assertEquals($expected, $this->todolistService->getTodolist());
     }
 }
